@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2028079195}
   speed: 1
-  adjustSpeed: 1
+  adjustSpeed: 0.2
   gravityCoeff: 98
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
