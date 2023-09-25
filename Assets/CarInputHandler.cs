@@ -13,10 +13,11 @@ public class CarInputHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
+        print($"x:{x}, y:{y}");
         carController.SetInputVector(new Vector2(x, y));
     }
 }

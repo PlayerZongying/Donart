@@ -13,7 +13,15 @@ public class CarController : MonoBehaviour
     public float suspensionStrength = 100;
     public float suspensionDamping = 15;
 
+    [Header("Car Steering")] [Range(0f, 1f)]
+    public float wheelGripFactor = 1f;
 
+    public float wheelMass = 10f;
+
+    [Header("Car Acceleration")] 
+    public float accelInput;
+    public float accelFactor;
+    public float maxSpeed;
     public float accelarationFactor = 30f;
 
     public float turnFactor = 2.5f;
@@ -39,16 +47,39 @@ public class CarController : MonoBehaviour
         foreach (Transform wheelTransform in wheelTransforms)
         {
             RaycastHit hit;
-            if (Physics.Raycast(wheelTransform.position, -wheelTransform.up, out hit, Mathf.Infinity,
+            if (Physics.Raycast(wheelTransform.position, -wheelTransform.up, out hit, suspensionDist,
                     LayerMask.GetMask("Default")))
             {
+                // suspension
                 Debug.DrawRay(wheelTransform.position, -wheelTransform.up * hit.distance, Color.green);
                 float offset = suspensionDist - hit.distance;
                 float velocity = Vector3.Dot(wheelTransform.up, carRigidBody.GetPointVelocity(wheelTransform.position));
                 float force = (offset * suspensionStrength) - (velocity * suspensionDamping);
                 carRigidBody.AddForceAtPosition(wheelTransform.up * force, wheelTransform.position);
+
+                // steering
+                Vector3 steeringDir = wheelTransform.right;
+
+                Vector3 wheelWorldVel = carRigidBody.GetPointVelocity(wheelTransform.position);
+                float steeringVel = Vector3.Dot(steeringDir, wheelWorldVel);
+                float desiredVelChange = -steeringVel * wheelGripFactor;
+
+                float desiredAccel = desiredVelChange / Time.fixedDeltaTime;
+
+                carRigidBody.AddForceAtPosition(steeringDir * wheelMass * desiredAccel, wheelTransform.position);
+                Debug.DrawRay(wheelTransform.position, steeringDir * wheelMass * desiredAccel, Color.red);
+
+                // acceleration / braking
+
+                Vector3 accelDir = wheelTransform.forward;
+                float carSpeed = Vector3.Dot(transform.forward, carRigidBody.velocity);
+                float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / maxSpeed);
+                float availableTorque = (1 - normalizedSpeed) * accelInput * accelFactor;
+                carRigidBody.AddForceAtPosition(accelDir * availableTorque, wheelTransform.position);
+                
+                
+                
             }
-            
         }
 
         ApplyEngineForce();
@@ -70,7 +101,7 @@ public class CarController : MonoBehaviour
 
     public void SetInputVector(Vector2 inputVector)
     {
-        accelarationInput = inputVector.y;
+        accelInput = inputVector.y;
         steeringInput = inputVector.x;
     }
 }
