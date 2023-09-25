@@ -15,7 +15,7 @@ public class CarController : MonoBehaviour
 
     [Header("Car Steering")] [Range(0f, 1f)]
     public float wheelGripFactor = 1f;
-
+    public float maxRotationAngle = 30;
     public float wheelMass = 10f;
 
     [Header("Car Acceleration")] 
@@ -82,7 +82,7 @@ public class CarController : MonoBehaviour
             }
         }
 
-        ApplyEngineForce();
+        // ApplyEngineForce();
         ApplySteering();
     }
 
@@ -94,9 +94,16 @@ public class CarController : MonoBehaviour
 
     void ApplySteering()
     {
-        rotationAngle += steeringInput * turnFactor;
-        Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
-        carRigidBody.MoveRotation(steeredRotation);
+        // rotationAngle += steeringInput * turnFactor;
+        // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
+        // carRigidBody.MoveRotation(steeredRotation);
+
+        for(int i = 0;i < 2; i++)
+        {
+            rotationAngle = steeringInput * maxRotationAngle;
+            // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
+            wheelTransforms[i].localEulerAngles = new Vector3(0, rotationAngle, 0);
+        }
     }
 
     public void SetInputVector(Vector2 inputVector)
