@@ -5,30 +5,33 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CarController : MonoBehaviour
 {
-    [Header("Car Settings")] public Rigidbody carRigidBody;
-    public Vector3 CenterOfMass;
+    [Header("Car Settings")] 
+    [SerializeField] private Rigidbody carRigidBody;
+    [SerializeField] private Vector3 CenterOfMass;
 
-    [Header("Car Suspension")] public Transform[] wheelTransforms;
-    public float suspensionDist = 0.5f;
-    public float suspensionStrength = 100;
-    public float suspensionDamping = 15;
+    [Header("Car Suspension")] 
+    [SerializeField] private Transform[] wheelTransforms;
+    [SerializeField] private float suspensionDist = 0.5f;
+    [SerializeField] private float suspensionStrength = 100;
+    [SerializeField] private float suspensionDamping = 15;
 
     [Header("Car Steering")] [Range(0f, 1f)]
-    public float wheelGripFactor = 1f;
-
-    public AnimationCurve wheelGripFactorCurve;
-    public float maxRotationAngle = 30;
-    public float wheelMass = 10f;
+    [SerializeField] private float wheelGripFactor = 1f;
+    [SerializeField] private AnimationCurve wheelGripFactorCurve;
+    [SerializeField] private float maxRotationAngle = 30;
+    [SerializeField] private float wheelMass = 10f;
 
     [Header("Car Acceleration")] 
-    public float accelInput;
-    public float accelFactor;
-    public float maxSpeed;
-    public float frictionFactor = 0;
-    public float accelarationFactor = 30f;
+    [SerializeField] private float accelInput;
+    [SerializeField] private AnimationCurve accelrationInputCurve;
+    [SerializeField] private float maxAccelation;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float frictionFactor = 0;
+    // [SerializeField] private float accelarationFactor = 30f;
 
     public float turnFactor = 2.5f;
 
@@ -89,37 +92,38 @@ public class CarController : MonoBehaviour
                 Vector3 accelDir = wheelTransform.forward;
                 float carSpeed = Vector3.Dot(transform.forward, carRigidBody.velocity);
                 float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / maxSpeed);
-                float availableTorque = (1 - normalizedSpeed) * accelInput * accelFactor;
+                accelInput *= accelrationInputCurve.Evaluate(normalizedSpeed);
+                float availableTorque = accelInput * maxAccelation;
                 float frictionMagnitute = carRigidBody.mass * Vector3.Dot(transform.up, Vector3.up) * frictionFactor;
-                Vector3 friction = - accelDir * frictionMagnitute;
+                Vector3 friction = -accelDir * frictionMagnitute;
                 if (Vector3.Dot(carRigidBody.velocity, accelDir) < 0)
                 {
                     friction *= -1;
                 }
+
                 carRigidBody.AddForceAtPosition(accelDir * availableTorque + friction, wheelTransform.position);
-                
-                
-                
             }
         }
 
         // ApplyEngineForce();
         ApplySteering();
+        
+        // print(carRigidBody.velocity.magnitude);
     }
 
-    void ApplyEngineForce()
-    {
-        Vector3 engineForceVector = transform.forward * accelarationInput * accelarationFactor;
-        carRigidBody.AddForce(engineForceVector);
-    }
+    // void ApplyEngineForce()
+    // {
+    //     Vector3 engineForceVector = transform.forward * accelarationInput * accelarationFactor;
+    //     carRigidBody.AddForce(engineForceVector);
+    // }
 
     void ApplySteering()
     {
         // rotationAngle += steeringInput * turnFactor;
         // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
         // carRigidBody.MoveRotation(steeredRotation);
-
-        for(int i = 0;i < 2; i++)
+    
+        for (int i = 0; i < 2; i++)
         {
             rotationAngle = steeringInput * maxRotationAngle;
             // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
@@ -136,14 +140,21 @@ public class CarController : MonoBehaviour
     private void ResetCar()
     {
         transform.position = Vector3.zero;
-        transform.position +=  Vector3.up * 5;
+        transform.position += Vector3.up * 5;
 
         Vector3 targetUp = Vector3.up;
         Vector3 targetRight = Vector3.Cross(targetUp, transform.forward);
         Vector3 targetForward = Vector3.Cross(targetRight, targetUp);
-        
-        transform.rotation = Quaternion.LookRotation(targetForward,targetUp);
+
+        transform.rotation = Quaternion.LookRotation(targetForward, targetUp);
         carRigidBody.velocity = Vector3.zero;
         carRigidBody.angularVelocity = Vector3.zero;
+    }
+
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+        }
     }
 }

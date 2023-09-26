@@ -17,7 +17,7 @@ public class CarInputHandler : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-        print($"x:{x}, y:{y}");
+        // print($"x:{x}, y:{y}");
         carController.SetInputVector(new Vector2(x, y));
     }
 }

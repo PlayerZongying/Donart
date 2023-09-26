@@ -507,13 +507,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxRotationAngle: 15
-  wheelMass: 1
+  maxRotationAngle: 30
+  wheelMass: 3
   accelInput: 0
-  accelFactor: 500
-  maxSpeed: 100
+  accelrationInputCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.002135187
+      value: 0.9386816
+      inSlope: 0.4787364
+      outSlope: 0.4787364
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.5381777
+    - serializedVersion: 3
+      time: 0.32312718
+      value: 1.009489
+      inSlope: 0.011720899
+      outSlope: 0.011720899
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.36183277
+    - serializedVersion: 3
+      time: 0.6353028
+      value: 1.0024365
+      inSlope: -0.092446454
+      outSlope: -0.092446454
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30223426
+      outWeight: 0.29952094
+    - serializedVersion: 3
+      time: 1
+      value: 0.2530899
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxAccelation: 500
+  maxSpeed: 25
   frictionFactor: 1
-  accelarationFactor: 15
   turnFactor: 1
 --- !u!114 &367437744587909733
 MonoBehaviour:
