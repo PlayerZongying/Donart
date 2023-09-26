@@ -9,6 +9,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     [Header("Car Settings")] public Rigidbody carRigidBody;
+    public Vector3 CenterOfMass;
 
     [Header("Car Suspension")] public Transform[] wheelTransforms;
     public float suspensionDist = 0.5f;
@@ -49,6 +50,8 @@ public class CarController : MonoBehaviour
         {
             ResetCar();
         }
+
+        carRigidBody.centerOfMass = CenterOfMass;
     }
 
     private void FixedUpdate()
