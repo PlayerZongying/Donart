@@ -601,11 +601,11 @@ GameObject:
   - component: {fileID: 8952730685025839991}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &462567536552042083
 Transform:
   m_ObjectHideFlags: 0
@@ -696,8 +696,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.7486242
     - serializedVersion: 3
-      time: 0.648117
-      value: 0.34068847
+      time: 0.51350397
+      value: 0.6237085
       inSlope: -1.0890045
       outSlope: -1.0890045
       tangentMode: 0
@@ -705,8 +705,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.55473673
     - serializedVersion: 3
-      time: 1.0073881
-      value: 0.11899209
+      time: 0.98816204
+      value: 0.43738198
       inSlope: -0.01609645
       outSlope: -0.01609645
       tangentMode: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxRotationAngle: 30
+  maxRotationAngle: 45
   wheelMass: 3
   accelInput: 0
   accelrationInputCurve:
@@ -763,6 +763,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxAccelation: 500
   maxSpeed: 25
+  normalizedForwardSpeed: 0
   frictionFactor: 1
   turnFactor: 1
 --- !u!114 &947541245450095189

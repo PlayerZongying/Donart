@@ -40,7 +40,7 @@ public class CarInputHandler : MonoBehaviour
 
         carController.SetInputVector(inputVector);
         // inputVector = new Vector2(Input.GetAxis("Horizontal"), (Input.GetAxis("Vertical")));
-        print(inputVector);
+        // print(inputVector);
     }
     
     public void OnAccelerate(InputAction.CallbackContext context)

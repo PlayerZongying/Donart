@@ -9,33 +9,34 @@ using UnityEngine.Serialization;
 
 public class CarController : MonoBehaviour
 {
-    [Header("Car Settings")] 
-    [SerializeField] private Rigidbody carRigidBody;
+    [Header("Car Settings")] [SerializeField]
+    private Rigidbody carRigidBody;
+
     [SerializeField] private Vector3 CenterOfMass;
 
-    [Header("Car Suspension")] 
-    [SerializeField] private Transform[] wheelTransforms;
+    [Header("Car Suspension")] [SerializeField]
+    private Transform[] wheelTransforms;
+
     [SerializeField] private float suspensionDist = 0.5f;
     [SerializeField] private float suspensionStrength = 100;
     [SerializeField] private float suspensionDamping = 15;
 
-    [Header("Car Steering")] [Range(0f, 1f)]
-    [SerializeField] private float wheelGripFactor = 1f;
+    [Header("Car Steering")] [Range(0f, 1f)] [SerializeField]
+    private float wheelGripFactor = 1f;
+
     [SerializeField] private AnimationCurve wheelGripFactorCurve;
     [SerializeField] private float maxRotationAngle = 30;
     [SerializeField] private float wheelMass = 10f;
 
-    [Header("Car Acceleration")] 
-    [SerializeField] private float accelInput;
+    [Header("Car Acceleration")] [SerializeField]
+    private float accelInput;
+
     [SerializeField] private AnimationCurve accelrationInputCurve;
     [SerializeField] private float maxAccelation;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float normalizedForwardSpeed;
     [SerializeField] private float frictionFactor = 0;
     // [SerializeField] private float accelarationFactor = 30f;
-
-    public float turnFactor = 2.5f;
-
-    private float accelarationInput = 0;
 
     private float steeringInput = 0;
 
@@ -78,8 +79,8 @@ public class CarController : MonoBehaviour
 
                 Vector3 wheelWorldVel = carRigidBody.GetPointVelocity(wheelTransform.position);
                 float steeringVel = Vector3.Dot(steeringDir, wheelWorldVel);
-                float normalizedSpped = carRigidBody.velocity.magnitude / maxSpeed;
-                wheelGripFactor = wheelGripFactorCurve.Evaluate(normalizedSpped);
+                float normalizedSpeed = carRigidBody.velocity.magnitude / maxSpeed;
+                wheelGripFactor = wheelGripFactorCurve.Evaluate(normalizedSpeed);
                 float desiredVelChange = -steeringVel * wheelGripFactor;
 
                 float desiredAccel = desiredVelChange / Time.fixedDeltaTime;
@@ -91,10 +92,15 @@ public class CarController : MonoBehaviour
 
                 Vector3 accelDir = wheelTransform.forward;
                 float carSpeed = Vector3.Dot(transform.forward, carRigidBody.velocity);
-                float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / maxSpeed);
-                accelInput *= accelrationInputCurve.Evaluate(normalizedSpeed);
-                float availableTorque = accelInput * maxAccelation;
-                float frictionMagnitute = carRigidBody.mass * Vector3.Dot(transform.up, Vector3.up) * frictionFactor;
+                // normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / maxSpeed);
+                normalizedForwardSpeed = carSpeed / maxSpeed;
+                
+                float evaluatedAccelInput = accelInput * accelrationInputCurve.Evaluate(Mathf.Sign(accelInput) * normalizedForwardSpeed);
+                
+                // print(evaluatedAccelInput);
+                float availableTorque = evaluatedAccelInput * maxAccelation;
+
+                float frictionMagnitute = carRigidBody.mass * frictionFactor;
                 Vector3 friction = -accelDir * frictionMagnitute;
                 if (Vector3.Dot(carRigidBody.velocity, accelDir) < 0)
                 {
@@ -105,24 +111,14 @@ public class CarController : MonoBehaviour
             }
         }
 
-        // ApplyEngineForce();
-        ApplySteering();
         
+        ApplySteering();
+
         // print(carRigidBody.velocity.magnitude);
     }
-
-    // void ApplyEngineForce()
-    // {
-    //     Vector3 engineForceVector = transform.forward * accelarationInput * accelarationFactor;
-    //     carRigidBody.AddForce(engineForceVector);
-    // }
-
     void ApplySteering()
     {
-        // rotationAngle += steeringInput * turnFactor;
-        // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
-        // carRigidBody.MoveRotation(steeredRotation);
-    
+
         for (int i = 0; i < 2; i++)
         {
             rotationAngle = steeringInput * maxRotationAngle;
@@ -149,12 +145,5 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetForward, targetUp);
         carRigidBody.velocity = Vector3.zero;
         carRigidBody.angularVelocity = Vector3.zero;
-    }
-
-    private void Dash()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-        }
     }
 }
