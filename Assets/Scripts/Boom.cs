@@ -12,10 +12,14 @@ public class Boom : MonoBehaviour
     public float upForce;
     public Vector2 denoteTimeRange;
     private float denoteTime;
+    public Vector2 spawnTimeRange;
+    private float spawnTime;
 
     void Start()
     {
     }
+    
+    
 
     // Update is called once per frame
     void Update()
@@ -31,11 +35,11 @@ public class Boom : MonoBehaviour
         Rigidbody rb = other.attachedRigidbody;
         if (rb.CompareTag("Player"))
         {
-            StartCoroutine(Denote());
+            StartCoroutine( Denote());
         }
     }
 
-    IEnumerator Denote()
+    public IEnumerator Denote()
     {
         float timePassed = 0;
         while (timePassed < denoteTime)
@@ -44,9 +48,9 @@ public class Boom : MonoBehaviour
             
             yield return new WaitForEndOfFrame();
         }
-
         ExpoldeAndInpact();
         
+        gameObject.SetActive(false);
     }
 
     public void ExpoldeAndInpact()
@@ -62,6 +66,18 @@ public class Boom : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upForce);
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        BoomManager.Instance.enabledBoomCount++;
+        // print(BoomManager.Instance.enabledBoomCount);
+    }
+    
+    private void OnDisable()
+    {
+        BoomManager.Instance.enabledBoomCount--;
+        // print(BoomManager.Instance.enabledBoomCount);
     }
 
     public void ResetAtRandomPos()
