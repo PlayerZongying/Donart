@@ -11,20 +11,20 @@ public class Direction : MonoBehaviour
     }
 
     public GuidingDirction guidingDirction;
-    public float movingSpeed = 10;
+    // public float movingSpeed = 10;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (guidingDirction == GuidingDirction.CounterClockWise)
-        {
-            transform.position = new Vector3(TorusTrack.R, 0, 0);
-        }
-        else
-        {
-            transform.position = new Vector3( - TorusTrack.R, 0, 0);
-        }
+        // if (guidingDirction == GuidingDirction.CounterClockWise)
+        // {
+        //     transform.position = new Vector3(TorusTrack.R, 0, 0);
+        // }
+        // else
+        // {
+        //     transform.position = new Vector3( - TorusTrack.R, 0, 0);
+        // }
     }
 
     // Update is called once per frame
@@ -33,22 +33,27 @@ public class Direction : MonoBehaviour
         float positionPhase;
         float theta;
         Vector3 targetRight;
+        Vector3 targetUp;
 
         float rotationPhase;
         if (guidingDirction == GuidingDirction.CounterClockWise)
         {
-            positionPhase = 0;
-            theta = Time.time * movingSpeed + positionPhase;
+            // positionPhase = 0;
+            // theta = Time.time * movingSpeed + positionPhase;
             targetRight = transform.position - TorusTrack.Instance.transform.position;
+            targetUp = Vector3.up;
         }
         else
         {
-            positionPhase = Mathf.PI;
-            theta = - Time.time * movingSpeed + positionPhase;
+            // positionPhase = Mathf.PI;
+            // theta = - Time.time * movingSpeed + positionPhase;
             targetRight = TorusTrack.Instance.transform.position - transform.position;
+            targetUp = Vector3.up;
         }
-        transform.position = new Vector3(TorusTrack.R * Mathf.Cos(theta), 0, TorusTrack.R * Mathf.Sin(theta));
+        // transform.position = new Vector3(TorusTrack.R * Mathf.Cos(theta), 0, TorusTrack.R * Mathf.Sin(theta));
         transform.right = targetRight;
+        transform.forward = Vector3.Cross(targetRight, targetUp);
+
 
 
     }

@@ -50,11 +50,6 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ResetCar();
-        }
-
         carRigidBody.centerOfMass = CenterOfMass;
     }
 
