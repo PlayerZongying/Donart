@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162388119449036550}
   - component: {fileID: 7833146868533439388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BottomRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107374979498694976}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10321069, y: 0.0000019849194, z: -0.00000020596485, w: 0.99465954}
+  m_LocalRotation: {x: 0.10321069, y: 0.000000017641216, z: -0.0000000018305383, w: 0.99465954}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 5138088564227444203}
   - component: {fileID: 1253382319692222567}
   - component: {fileID: 844472364626233069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 8564390589956057306}
   - component: {fileID: 2677111312271961642}
   - component: {fileID: 6395690677055323314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 3425193895518303684}
   - component: {fileID: 5121599500656978709}
   - component: {fileID: 3226078485917830979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6700073767089372546}
   - component: {fileID: 6593337391255680797}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TopRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5275212785865996465}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16018224, y: 0.0000019932202, z: -0.00000032345505, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018224, y: 0.0000000059046323, z: -9.5819e-10, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -953,7 +953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7058943550114460528}
   - component: {fileID: 3951417997090881236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FreeLook Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -969,7 +969,7 @@ Transform:
   m_GameObject: {fileID: 6117324818137136456}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000054359436, y: 4.5, z: -13.5}
+  m_LocalPosition: {x: 0, y: 4.5, z: -13.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRigidBody: {fileID: 2336523752360510252}
-  CenterOfMass: {x: 0, y: -0.5, z: 0}
+  CenterOfMass: {x: 0, y: -0.5, z: 0.35}
   wheelTransforms:
   - {fileID: 6131410227945791139}
   - {fileID: 7894009070766287712}
@@ -1291,7 +1291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackDirection: 1
-  initHorizonPos: {x: 1, y: 0, z: 0}
   rounds: 0
   progressInDegree: 0
 --- !u!114 &8952730685025839991
@@ -1399,7 +1398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883042975119285667}
   - component: {fileID: 151823365631207619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MiddleRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7928230009496063972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13165644, y: 0.0000020043165, z: -0.0000002661983, w: 0.99129546}
+  m_LocalRotation: {x: 0.13165644, y: -0.000000008528303, z: 0.0000000011326654, w: 0.99129546}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

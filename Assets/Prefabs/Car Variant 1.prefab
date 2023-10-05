@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721037802878587650}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15515175, y: 0.5394869, z: -0.10191739, w: 0.82127625}
+  m_LocalRotation: {x: 0.13198401, y: 0.062313765, z: -0.00831374, w: 0.9892564}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -346,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489331362863421000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17876591, y: 0.53632426, z: -0.11742927, w: 0.81646156}
+  m_LocalRotation: {x: 0.16045088, y: 0.062048156, z: -0.010106883, w: 0.98503983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -562,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3814499257395310924}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1315659, y: 0.54218465, z: -0.08642412, w: 0.82538307}
+  m_LocalRotation: {x: 0.10359652, y: 0.06252634, z: -0.0065256013, w: 0.99263066}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1223,7 +1223,7 @@ Transform:
   m_GameObject: {fileID: 7526340161953075997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.97899, y: 4.5, z: -3.885388}
+  m_LocalPosition: {x: -1.6873341, y: 4.5, z: -13.340413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRigidBody: {fileID: 1134142003522794788}
-  CenterOfMass: {x: 0, y: -0.5, z: 0}
+  CenterOfMass: {x: 0, y: -0.5, z: 0.35}
   wheelTransforms:
   - {fileID: 1862907563002543409}
   - {fileID: 6408243663525333614}
@@ -1545,7 +1545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackDirection: 0
-  initHorizonPos: {x: 1, y: 0, z: 0}
   rounds: 0
   progressInDegree: 0
 --- !u!114 &2970113556062120287

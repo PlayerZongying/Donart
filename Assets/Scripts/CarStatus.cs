@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,21 +14,50 @@ public class CarStatus : MonoBehaviour
     }
 
     public TrackDirection trackDirection;
-    public Vector3 initHorizonPos;
+    private Vector3 initPos;
+    private Quaternion initRot;
+    private Vector3 initHorizonPos;
     private float currentDegree = 0;
     private float lastDegree = 0;
     public int rounds = 0;
     public float progressInDegree = 0;
+    private bool isFinished = false;
+
+    public void Init()
+    {
+        initPos = new Vector3(transform.position.x, 0, transform.position.z).normalized * TorusTrack.R;
+        initHorizonPos = new Vector3(initPos.x, 0, initPos.z);
+        initRot = quaternion.identity;
+        
+        ResetCarStatus();
+    }
+
+    public void ResetCarStatus()
+    {
+        transform.position = initPos;
+        transform.rotation = initRot;
+        currentDegree = 0;
+        lastDegree = 0;
+        progressInDegree = 0;
+        rounds = 0;
+        isFinished = false;
+        
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        initHorizonPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Init();
+        // initHorizonPos = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isFinished) return;
         UpdateProgressInDegree();
     }
 
@@ -62,5 +93,12 @@ public class CarStatus : MonoBehaviour
         progressInDegree = currentDegree;
         
         lastDegree = currentDegree;
+
+        if (rounds == GameManager.Instance.winningRounds)
+        {
+            isFinished = true;
+            progressInDegree = 0;
+            rounds = GameManager.Instance.winningRounds;
+        }
     }
 }
