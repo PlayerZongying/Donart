@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Accelerator : MonoBehaviour
 {
+    public bool isMoving = false;
     public float forceMagnitute = 1000;
     // Start is called before the first frame update
     void Start()
@@ -16,11 +17,6 @@ public class Accelerator : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        print(other);
     }
 
     private void OnTriggerEnter(Collider other)
