@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -14,6 +16,7 @@ public class BoomManager : MonoBehaviour
     public Vector2 denoteTimeRange;
     public Boom[] boomPool = new Boom[30];
     private int poolIndex = 0;
+    
     
     // Start is called before the first frame update
     private void Awake()
@@ -38,13 +41,6 @@ public class BoomManager : MonoBehaviour
             newBoom.transform.SetParent(transform);
             newBoomGameObject.SetActive(false);
         }
-        // for (int i = 0; i < desiredBoomCount; i++)
-        // {
-        //     GameObject newBoomGameObject = Instantiate(BoomPrefab);
-        //     Boom newBoom = newBoomGameObject.GetComponent<Boom>();
-        //     newBoom.transform.SetParent(transform);
-        //     newBoom.transform.position = RandomPositionOnTorusSurface();
-        // }
     }
 
     // Update is called once per frame
@@ -54,8 +50,10 @@ public class BoomManager : MonoBehaviour
         {
             Boom boomToEnable = FindNextDisabledBoom();
             boomToEnable.gameObject.SetActive(true);
-            boomToEnable.transform.position = RandomPositionOnTorusSurface();
+            boomToEnable.SetRandomPositionOnTorus();
         }
+        
+        // print(Mathf.PerlinNoise1D(Time.time) * 2 - 1);
     }
 
     private Boom FindNextDisabledBoom()
@@ -65,19 +63,6 @@ public class BoomManager : MonoBehaviour
             poolIndex = poolIndex == boomPool.Length - 1 ? 0 : poolIndex + 1;
         }
         return boomPool[poolIndex];
-    }
-
-    private Vector3 RandomPositionOnTorusSurface()
-    {
-        Vector3 pos = Vector3.one;
-
-        float theta = Random.Range(0f, Mathf.PI * 2);
-        float phi = Random.Range(0f, 360f);
-
-        pos = new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0) * TorusTrack.r + Vector3.right * TorusTrack.R;
-        pos = Quaternion.Euler(0, phi, 0) * pos;
-        pos += TorusTrack.Instance.transform.position;
-        return pos;
     }
     
     public IEnumerator Denote(Boom boom)
@@ -93,6 +78,6 @@ public class BoomManager : MonoBehaviour
         }
 
         boom.ExpoldeAndInpact();
-        boom.transform.position = RandomPositionOnTorusSurface();
+        boom.SetRandomPositionOnTorus();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Boom : MonoBehaviour
 {
@@ -14,20 +15,33 @@ public class Boom : MonoBehaviour
     private float denoteTime;
     public Vector2 spawnTimeRange;
     private float spawnTime;
+    
+    public PositionOnTorus positionOnTorus;
 
     void Start()
     {
     }
+
+    public void SetRandomPositionOnTorus()
+    {
+        float randomTheta = Random.Range(0f, 360f);
+        float randomPhi = Random.Range(0f, 360f);
+        SetPositiononOnTorus(randomTheta, randomPhi);
+    }
     
-    
+    public void SetPositiononOnTorus(float thetaInDegree, float phiInDegree)
+    {
+        positionOnTorus.thetaInDegree = thetaInDegree;
+        positionOnTorus.phiInDegree = phiInDegree;
+        transform.position = TorusTrack.PositionOnTorusSurface(thetaInDegree, phiInDegree);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     ExpoldeAndInpact();
-        // }
+        positionOnTorus.thetaInDegree += Time.deltaTime * 15 * (Mathf.PerlinNoise1D(Time.time));
+        positionOnTorus.phiInDegree += Time.deltaTime * 15 * (Mathf.PerlinNoise1D(Time.time));
+        SetPositiononOnTorus(positionOnTorus.thetaInDegree, positionOnTorus.phiInDegree);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,13 +85,11 @@ public class Boom : MonoBehaviour
     private void OnEnable()
     {
         BoomManager.Instance.enabledBoomCount++;
-        // print(BoomManager.Instance.enabledBoomCount);
     }
     
     private void OnDisable()
     {
         BoomManager.Instance.enabledBoomCount--;
-        // print(BoomManager.Instance.enabledBoomCount);
     }
 
     public void ResetAtRandomPos()
