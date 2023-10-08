@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -56,5 +57,10 @@ public class UIManager : MonoBehaviour
     {
         _gameManager.carStatus1.ResetCarStatus();
         _gameManager.carStatus2.ResetCarStatus();
+    }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,17 +24,19 @@ public class BumpManager : MonoBehaviour
     }
     void Start()
     {
+        BumpManagerInit();
+    }
+
+    public void BumpManagerInit()
+    {
         for (int i = 0; i < bumpCount; i++)
         {
             GameObject newBumpGameObject = Instantiate(bumpPrefab);
-            newBumpGameObject.transform.SetParent(transform);
-
             float randomTheta = Random.Range(0f, 360f);
             float randomPhi = Random.Range(0f, 360f);
-            
             newBumpGameObject.transform.position = TorusTrack.PositionOnTorusSurface(randomTheta, randomPhi);
             newBumpGameObject.transform.rotation = TorusTrack.OrientaionOnTorusSurface(randomTheta, randomPhi);
-
+            newBumpGameObject.transform.SetParent(transform);
         }
     }
 

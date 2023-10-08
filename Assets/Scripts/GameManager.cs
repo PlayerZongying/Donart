@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameSettings gameSettings;
+
     // Start is called before the first frame update
     public CarStatus carStatus1;
     public CarStatus carStatus2;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _uiManager = UIManager.Instance;
+        gameSettings.SetGame();
     }
 
     // Update is called once per frame

@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class AcceleratorManager : MonoBehaviour
 {
+    public static AcceleratorManager Instance;
     public GameObject acceleratorPrefab;
     public int acceleratorCount = 3;
     public Accelerator[] accelerators;
@@ -13,6 +14,18 @@ public class AcceleratorManager : MonoBehaviour
     public Vector2 acceleratorDisappearTimeRange;
 
     public float rotateSpeed = 10;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

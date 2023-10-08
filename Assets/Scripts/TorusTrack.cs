@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,10 +16,12 @@ public class TorusTrack : MonoBehaviour
 {
     const float R_Model = 3f;
     const float r_Model = 2f;
+    const float BaseScale = 4f;
     public static TorusTrack Instance;
 
 
     [SerializeField] private float scale = 4f;
+    public static float ScaleForChildren{ get; private set; }
     public static float R { get; private set; }
     public static float r { get; private set; }
 
@@ -37,6 +41,7 @@ public class TorusTrack : MonoBehaviour
         r = r_Model * scale;
     }
 
+
     public static Vector3 PositionOnTorusSurface(float thetaInDegree, float phiInDegree)
     {
         Vector3 pos = Vector3.one;
@@ -45,6 +50,7 @@ public class TorusTrack : MonoBehaviour
 
         pos = new Vector3(Mathf.Cos(thetaInRadius), Mathf.Sin(thetaInRadius), 0) * r + Vector3.right * R;
         pos = Quaternion.Euler(0, phiInDegree, 0) * pos;
+        pos = Instance.transform.rotation * pos;
         pos += Instance.transform.position;
         return pos;
     }
@@ -71,14 +77,18 @@ public class TorusTrack : MonoBehaviour
         return Orientation;
     }
 
+    private void Start()
+    {
+        // foreach (Transform child in GetComponentInChildren<Transform>())
+        // {
+        //     child.localScale *= scale / BaseScale;
+        // }
+    }
+
     private void Update()
     {
         transform.localScale = scale * Vector3.one;
         R = R_Model * scale;
         r = r_Model * scale;
-    }
-
-    private void Start()
-    {
     }
 }
