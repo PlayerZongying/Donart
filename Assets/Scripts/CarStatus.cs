@@ -21,14 +21,15 @@ public class CarStatus : MonoBehaviour
     private float lastDegree = 0;
     public int rounds = 0;
     public float progressInDegree = 0;
-    private bool isFinished = false;
+    public bool isCompelete = false;
+
+    public Color carColor;
 
     public void Init()
     {
         initPos = new Vector3(transform.position.x, 0, transform.position.z).normalized * TorusTrack.R;
         initHorizonPos = new Vector3(initPos.x, 0, initPos.z);
         initRot = quaternion.identity;
-        
         ResetCarStatus();
     }
 
@@ -40,7 +41,7 @@ public class CarStatus : MonoBehaviour
         lastDegree = 0;
         progressInDegree = 0;
         rounds = 0;
-        isFinished = false;
+        isCompelete = false;
         
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
@@ -57,7 +58,7 @@ public class CarStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFinished) return;
+        if (isCompelete) return;
         UpdateProgressInDegree();
     }
 
@@ -96,9 +97,11 @@ public class CarStatus : MonoBehaviour
 
         if (rounds == GameManager.Instance.winningRounds)
         {
-            isFinished = true;
+            isCompelete = true;
             progressInDegree = 0;
             rounds = GameManager.Instance.winningRounds;
+            
+            GameManager.Instance.AddResult(gameObject.name, GameManager.Instance.time, carColor);
         }
     }
 }
