@@ -91,9 +91,4 @@ public class Boom : MonoBehaviour
     {
         BoomManager.Instance.enabledBoomCount--;
     }
-
-    public void ResetAtRandomPos()
-    {
-        
-    }
 }

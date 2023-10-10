@@ -11,23 +11,7 @@ public class Direction : MonoBehaviour
     }
 
     public GuidingDirction guidingDirction;
-    // public float movingSpeed = 10;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // if (guidingDirction == GuidingDirction.CounterClockWise)
-        // {
-        //     transform.position = new Vector3(TorusTrack.R, 0, 0);
-        // }
-        // else
-        // {
-        //     transform.position = new Vector3( - TorusTrack.R, 0, 0);
-        // }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float positionPhase;

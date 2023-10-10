@@ -5,27 +5,14 @@ using UnityEngine;
 
 public class Accelerator : MonoBehaviour
 {
-    public bool isMoving = false;
     public float forceMagnitute = 1000;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = other.attachedRigidbody;
         if (rb.CompareTag("Player"))
         {
             Accelerate(rb);
-            //print("Player Touched!");
         }
     }
 

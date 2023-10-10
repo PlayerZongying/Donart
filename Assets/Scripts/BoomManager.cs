@@ -52,8 +52,6 @@ public class BoomManager : MonoBehaviour
             boomToEnable.gameObject.SetActive(true);
             boomToEnable.SetRandomPositionOnTorus();
         }
-        
-        // print(Mathf.PerlinNoise1D(Time.time) * 2 - 1);
     }
 
     private Boom FindNextDisabledBoom()

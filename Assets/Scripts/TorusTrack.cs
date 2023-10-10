@@ -77,14 +77,6 @@ public class TorusTrack : MonoBehaviour
         return Orientation;
     }
 
-    private void Start()
-    {
-        // foreach (Transform child in GetComponentInChildren<Transform>())
-        // {
-        //     child.localScale *= scale / BaseScale;
-        // }
-    }
-
     private void Update()
     {
         transform.localScale = scale * Vector3.one;

@@ -80,8 +80,8 @@ public class CarController : MonoBehaviour
 
                 float desiredAccel = desiredVelChange / Time.fixedDeltaTime;
 
-                carRigidBody.AddForceAtPosition(steeringDir * wheelMass * desiredAccel, wheelTransform.position);
-                Debug.DrawRay(wheelTransform.position, steeringDir * wheelMass * desiredAccel, Color.red);
+                carRigidBody.AddForceAtPosition(steeringDir * (wheelMass * desiredAccel), wheelTransform.position);
+                Debug.DrawRay(wheelTransform.position, steeringDir * (wheelMass * desiredAccel), Color.red);
 
                 // acceleration / braking
 
@@ -113,7 +113,6 @@ public class CarController : MonoBehaviour
     }
     void ApplySteering()
     {
-
         for (int i = 0; i < 2; i++)
         {
             rotationAngle = steeringInput * maxRotationAngle;

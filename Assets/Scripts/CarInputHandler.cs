@@ -24,23 +24,13 @@ public class CarInputHandler : MonoBehaviour
 
     void UpdateInputVector()
     {
-        // inputVector.x += Mathf.Sign(targetInputVector.x - inputVector.x) * Time.deltaTime * 2;
-        // inputVector.x = Mathf.Clamp(inputVector.x, -1, 1);
-        //
-        // inputVector.y += Mathf.Sign(targetInputVector.y - inputVector.y) * Time.deltaTime * 2;
-        // inputVector.y = Mathf.Clamp(inputVector.y, -1, 1);
-
         inputVector = Vector2.Lerp(inputVector, targetInputVector, Time.deltaTime * InputLerpSpeed);
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         carController.SetInputVector(inputVector);
-        // inputVector = new Vector2(Input.GetAxis("Horizontal"), (Input.GetAxis("Vertical")));
-        // print(inputVector);
     }
     
     public void OnAccelerate(InputAction.CallbackContext context)
