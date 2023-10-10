@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     public void LoadMainMenuScene()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ShowResult()
