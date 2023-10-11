@@ -46,13 +46,13 @@ The number of completed rounds is also counted for each car.
 ![img](Misc/UI.png "In Game UI")*In Game UI*
 
 By pressing ```WASD``` and ```up, down, left, right arrow```, try your best to avoid the bumps, catch the slides, recover balance after blown away from the booms, and complete more rounds as fast as you can.
-![img](Misc/InGameAll.png "Chaotic but fun")*Chaotic but fun*
+![img](Misc/InGameWithAll.png "Chaotic but fun")*Chaotic but fun*
 
 You can also press ```Esc``` key to pause the game.
 ![img](Misc/Pause.png "Pause panel")*Pause panel*
 
 When both player have completed a certain number of rounds (for now is 3), results will be shown, and who finished faster is the winner. And then you can choose to rematch or go back to main menu.
-![img](Misc/result.png "Result Panel")*Result Panel*
+![img](Misc/Result.png "Result Panel")*Result Panel*
 
 ## Operation
 ### 1. In main menu
