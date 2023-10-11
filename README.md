@@ -19,74 +19,74 @@ In "MainMenu" scene, you can select what you want in the donut track. You can ch
 
 * Chocolate Bump: Brown static bump staying at a random position on the surface of the donut track.   
 
-* Melon Slide: Green "accelerator" appearing and rotating at a random position within the donut track. It will acclecrate cars passing through it.  
+* Melon Slide: Green "accelerator" appears and rotates at a random position within the donut track. It will accelerate cars passing through it.  
 
-* Cherry Boom: Pink booms, appearing and moving at a romdom position on the surface of the donut track. It will burst and impact all cars with the explosion range, and then appear somewhere else.  
+* Cherry Boom: Pink booms, appearing and moving at a random position on the surface of the donut track. It will burst and impact all cars with the explosion range, and then appear somewhere else.  
 
 ![img](Misc/LevelMaking.png "Chocolate Bump, Melon Slide, Cherry Boom and All.")*Chocolate Bump, Melon Slide, Cherry Boom and All.*  
 
-After selecting, you can press "Start!" button to load the level you made.
+After selecting, you can press the "Start!" button to load the level you made.
 
 ### 2. Racing  
 
-In "Game" scene, there is a top down view of the whole track, and two views for two players in the lower half of the screen.  
+In the "Game" scene, there is a top-down view of the whole track and two views of two players in the lower half of the screen.  
 
-The black car for player 1 and the white car for player 2 will be initialized at the left and right part inside of the donut track. 
-The black car should go clockwise while the white car should go conterclockwise. 
+The black car for Player 1 and the white car for Player 2 will be initialized at the left and right parts inside of the donut track. 
+The black car should go clockwise while the white car should go counterclockwise. 
 
 There is also a green arrow for each car, indicating the correct direction the car should go.
 ![img](Misc/InGame.png "In Game Layout")*In Game layout*
 
 
-The racing starts right away when scene is loaded. the time starts counting as well.
+The racing starts right away when the scene is loaded. the time starts counting as well.
 
-Since the track is a circle, the progress for each car is counted in degree from its initial position to its current possition.   
+Since the track is a circle, the progress for each car is counted in degrees from its initial position to its current position.   
 
 The number of completed rounds is also counted for each car. 
 ![img](Misc/UI.png "In Game UI")*In Game UI*
 
-By pressing ```WASD``` and ```up, down, left, right arrow```, try your best to avoid the bumps, catch the slides, recover balance after blown away from the booms, and complete more rounds as fast as you can.
+By pressing ```WASD``` and ```up, down, left, right arrow```, try your best to avoid the bumps, catch the slides, recover balance after being blown away from the booms, and complete more rounds as fast as you can.
 ![img](Misc/InGameWithAll.png "Chaotic but fun")*Chaotic but fun*
 
-You can also press ```Esc``` key to pause the game.
+You can also press the ```Esc``` key to pause the game.
 ![img](Misc/Pause.png "Pause panel")*Pause panel*
 
-When both player have completed a certain number of rounds (for now is 3), results will be shown, and who finished faster is the winner. And then you can choose to rematch or go back to main menu.
+When both players have completed a certain number of rounds (for now 3), results will be shown, and who finished faster is the winner. And then you can choose to rematch or go back to the main menu.
 ![img](Misc/Result.png "Result Panel")*Result Panel*
 
 ## Operation
-### 1. In main menu
-Just use mouse to click on the button.
+### 1. In the main menu
+Just use the mouse to click on the button.
 
-### 2. In game
-For player 1 to control black car. press ```WASD```.  
-For player 2 to control white car. press ```up, down, left, right arrow```.
+### 2. In-game
+For player 1 to control the black car. press ```WASD```.  
+For player 2 to control the white car. press ```up, down, left, right arrow```.
 
-To pause in game, press ```Esc``` button, and the pause menu will be shown while the game is paused.
+To pause the game, press ```Esc``` button and the pause menu will be shown while the game is paused.
 
 ## Game Logic
 
 ### 1. Car
-The car in this game is made base on Unity Physics with rigid body, controlled by Unity new input system, followed by a cinemachine free look camera.  
+The car in this game is made based on Unity Physics with rigid body, controlled by Unity new input system, followed by a cinemachine free look camera.  
 
-The attached ```carController``` calculates the suspension, steering and acceleration.  
-The attached ```carInputHandeler``` lerps the input from input system.  
-The attached ```carStatus``` deterimines the driving directio(clockwise or conterclockwise) and count the progress in degree and the rounds the player has finished.
+The attached ```carController``` calculates the suspension, steering, and acceleration.  
+The attached ```carInputHandeler``` lerps the input from the input system.  
+The attached ```carStatus```determines the driving direction (clockwise or counterclockwise) and counts the progress in degree and the rounds the player has finished.
 
 
 ### 2. Torus (the donut track)
-Base on its major radius R, minor radius r and local scale, the torus can give a position and rotation on its curface, with which the children ```BumpManager```, ```AcceleratorManager```, ```BoomManager``` could instanciate the bump (chocolate bump), accelerator (melon slide) and boom (cherry boom) correctly on the torus furface. 
+Based on its major radius R, minor radius r, and local scale, the torus can give a position and rotation on its surface, with which the children ```BumpManager```, ```AcceleratorManager```, ```BoomManager``` could instantiate the bump (chocolate bump), accelerator (melon slide) and boom (cherry boom) correctly on the torus surface. 
 
-And the three managers above will manage the behavior of the prefabs they instantiated.
+The three managers mentioned above will manage the behavior of the prefabs they instantiated.
 
 ### 3. Game Manager
-Determine which topping should be add to the donut track, according to the scriptable object ```GameSettings``` which was modified previously in the main menu scene through the toggle buttons.  
+Determine which topping should be added to the donut track, according to the scriptable object ```GameSettings``` which was modified previously in the main menu scene through the toggle buttons.  
 Determine how many rounds a car should complete.  
-Determine game states by watching status of 2 cars.
+Determine game states by watching the status of 2 cars.
 
 ### 4. UI
-Show different panel according to game states and player input.  
-Display important game data from game manager.
+Show different panels according to game states and player input.  
+Display important game data from the game manager.
 
 
 ## Insperation
@@ -110,7 +110,7 @@ Packages installed:
 * Universal RP
 * Shader Graph
 
-Models are all self made in Blender.
+Models are all self-made in Blender.
 
 ## Lastly
-Wish you could have fun in may game! - Zongying Liu
+Wish you have fun in my game! - Zongying Liu
