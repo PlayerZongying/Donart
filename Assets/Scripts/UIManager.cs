@@ -110,6 +110,7 @@ public class UIManager : MonoBehaviour
 
     public void Rematch()
     {
-        SceneManager.LoadScene("Game");
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
     }
 }
