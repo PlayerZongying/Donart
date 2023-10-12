@@ -1,20 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+
+    [Header("Before Game Start")] 
+    public GameObject panelReady;
+    public TextMeshProUGUI ReadyText;
+    
+    [Header("Game Status")] 
     public TextMeshProUGUI playerStatus1;
     public TextMeshProUGUI playerStatus2;
     public TextMeshProUGUI time;
+    
+    [Header("Pause Panel")] 
     public GameObject panelPause;
+    
+    [Header("Result Panel")] 
     public GameObject panelResult;
     public TextMeshProUGUI winningText;
     public GameObject ResultList;
@@ -80,11 +84,10 @@ public class UIManager : MonoBehaviour
             TextMeshProUGUI[] resultTexts = ResultList.GetComponentsInChildren<TextMeshProUGUI>();
             for (int i = 0; i < 2; i++)
             {
-                resultTexts[i].text = $"{_gameManager.results[i].playerName} {_gameManager.results[i].time : 0.00}s";
+                resultTexts[i].text = $"{_gameManager.results[i].playerName} {_gameManager.results[i].time: 0.00}s";
                 resultTexts[i].color = _gameManager.results[i].color;
             }
         }
-
     }
 
     void UpdateTMPDisplay()
@@ -103,7 +106,7 @@ public class UIManager : MonoBehaviour
                              $"\n" +
                              $"Rounds\n" +
                              $"{_gameManager.carStatus2.rounds}";
-        
+
         time.enabled = (!_gameManager.isFinished);
         time.text = $"{_gameManager.time:0.00}";
     }
