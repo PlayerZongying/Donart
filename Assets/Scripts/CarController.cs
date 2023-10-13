@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 public class CarController : MonoBehaviour
 {
     [Header("Car Settings")] [SerializeField]
-    private Rigidbody carRigidBody;
+    public Rigidbody carRigidBody;
 
     [SerializeField] private Vector3 CenterOfMass;
 
@@ -138,5 +138,16 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(targetForward, targetUp);
         carRigidBody.velocity = Vector3.zero;
         carRigidBody.angularVelocity = Vector3.zero;
+    }
+    
+    public void Freeze()
+    {
+        carRigidBody.constraints = RigidbodyConstraints.FreezePositionX |  RigidbodyConstraints.FreezePositionZ |
+                                   RigidbodyConstraints.FreezeRotation;
+    }
+
+    public void UnFreeze()
+    {
+        carRigidBody.constraints = RigidbodyConstraints.None;
     }
 }

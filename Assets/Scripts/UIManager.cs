@@ -1,25 +1,24 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Image = UnityEngine.UI.Image;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [Header("Before Game Start")] 
-    public GameObject panelReady;
+    [Header("Before Game Start")] public GameObject panelReady;
     public TextMeshProUGUI ReadyText;
-    
-    [Header("Game Status")] 
-    public TextMeshProUGUI playerStatus1;
+    public float fadingTime = 1;
+
+    [Header("Game Status")] public TextMeshProUGUI playerStatus1;
     public TextMeshProUGUI playerStatus2;
     public TextMeshProUGUI time;
-    
-    [Header("Pause Panel")] 
-    public GameObject panelPause;
-    
-    [Header("Result Panel")] 
-    public GameObject panelResult;
+
+    [Header("Pause Panel")] public GameObject panelPause;
+
+    [Header("Result Panel")] public GameObject panelResult;
     public TextMeshProUGUI winningText;
     public GameObject ResultList;
 
@@ -40,6 +39,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _gameManager = GameManager.Instance;
+        panelReady.SetActive(true);
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
             TogglePausePanel();
         }
 
-
+        DisplayCountDown();
         UpdateTMPDisplay();
         ShowResult();
     }
@@ -92,22 +92,22 @@ public class UIManager : MonoBehaviour
 
     void UpdateTMPDisplay()
     {
-        playerStatus1.enabled = (!_gameManager.isFinished);
+        playerStatus1.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
         playerStatus1.text = $"Progress\n" +
                              $"{_gameManager.carStatus1.progressInDegree: 0.0}\u00B0\n" +
                              $"\n" +
                              $"Rounds\n" +
-                             $"{_gameManager.carStatus1.rounds}";
+                             $"{_gameManager.carStatus1.rounds}/{_gameManager.winningRounds}";
 
 
-        playerStatus2.enabled = (!_gameManager.isFinished);
+        playerStatus2.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
         playerStatus2.text = $"Progress\n" +
                              $"{_gameManager.carStatus2.progressInDegree: 0.0}\u00B0\n" +
                              $"\n" +
                              $"Rounds\n" +
-                             $"{_gameManager.carStatus2.rounds}";
+                             $"{_gameManager.carStatus2.rounds}/{_gameManager.winningRounds}";
 
-        time.enabled = (!_gameManager.isFinished);
+        time.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
         time.text = $"{_gameManager.time:0.00}";
     }
 
@@ -115,5 +115,34 @@ public class UIManager : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
+    }
+
+    void DisplayCountDown()
+    {
+        if (_gameManager.isStarted) return;
+        ReadyText.text = _gameManager.countDownTime.ToString();
+    }
+
+    public IEnumerator panelReadyFading()
+    {
+        ReadyText.text = "GO!";
+        float timePassed = 0;
+        while (timePassed < fadingTime)
+        {
+            timePassed += Time.deltaTime;
+            float t = 1 - timePassed / fadingTime;
+            
+            Image bgImage = panelReady.GetComponent<Image>();
+            Color bgColor = bgImage.color;
+            bgColor.a *= t;
+            bgImage.color = bgColor;
+
+            Color textColor = ReadyText.color;
+            textColor.a *= t;
+            ReadyText.color = textColor;
+
+            yield return new WaitForEndOfFrame();
+        }
+        panelReady.SetActive(true);
     }
 }

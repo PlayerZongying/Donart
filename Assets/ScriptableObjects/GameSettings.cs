@@ -10,6 +10,8 @@ public class GameSettings : ScriptableObject
     public bool hasBump = false;
     public bool hasSlide = false;
     public bool hasBoom = false;
+
+    public int winningRounds = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +37,6 @@ public class GameSettings : ScriptableObject
         BumpManager.Instance.gameObject.SetActive(hasBump);
         AcceleratorManager.Instance.gameObject.SetActive(hasSlide);
         BoomManager.Instance.gameObject.SetActive(hasBoom);
+        GameManager.Instance.winningRounds = winningRounds;
     }
 }

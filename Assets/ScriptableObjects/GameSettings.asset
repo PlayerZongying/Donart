@@ -15,3 +15,4 @@ MonoBehaviour:
   hasBump: 0
   hasSlide: 0
   hasBoom: 0
+  winningRounds: 1
