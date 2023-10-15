@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107374979498694976}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.103891045, y: 0.08301571, z: -0.008702214, w: 0.99107987}
+  m_LocalRotation: {x: 0.103891045, y: 0.08301575, z: -0.008702217, w: 0.99107987}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1276,6 +1276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa4dbe42f44cfb47a03a6bdbcbfe4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
+  aiInput: {fileID: 0}
   carController: {fileID: 8139146463083162158}
   InputLerpSpeed: 7
 --- !u!114 &4739385790431993800
@@ -1290,6 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5667ac978de52d34fb77e5955bcde608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: Night
   trackDirection: 1
   rounds: 0
   progressInDegree: 0
@@ -1415,7 +1418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7928230009496063972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13223398, y: 0.082732424, z: -0.011076299, w: 0.9876978}
+  m_LocalRotation: {x: 0.13223398, y: 0.08273242, z: -0.0110762995, w: 0.9876978}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

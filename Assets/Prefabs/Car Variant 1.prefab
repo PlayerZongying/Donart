@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721037802878587650}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13204347, y: 0.06773392, z: -0.009044343, w: 0.9888857}
+  m_LocalRotation: {x: 0.13204347, y: 0.06773389, z: -0.009044338, w: 0.9888857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -346,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489331362863421000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16049968, y: 0.06744502, z: -0.01099346, w: 0.98466754}
+  m_LocalRotation: {x: 0.16049965, y: 0.06744498, z: -0.01099345, w: 0.9846676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1530,6 +1530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa4dbe42f44cfb47a03a6bdbcbfe4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
+  aiInput: {fileID: 0}
   carController: {fileID: 2147301988769064821}
   InputLerpSpeed: 7
 --- !u!114 &40412363668649983
@@ -1544,6 +1546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5667ac978de52d34fb77e5955bcde608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: Day
   trackDirection: 0
   rounds: 0
   progressInDegree: 0

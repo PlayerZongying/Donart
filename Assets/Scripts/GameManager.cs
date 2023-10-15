@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class GameManager : MonoBehaviour
@@ -58,6 +59,12 @@ public class GameManager : MonoBehaviour
     {
         _uiManager = UIManager.Instance;
         gameSettings.SetGame();
+        
+        if (gameSettings.isSinglePlayer)
+        {
+            SetGameForSinglePlayer();
+        }
+        
         results = new List<Result>();
         StartCoroutine(CountDown());
         carController1.Freeze();
@@ -92,5 +99,19 @@ public class GameManager : MonoBehaviour
         carController1.UnFreeze();
         carController2.UnFreeze();
         StartCoroutine(_uiManager.panelReadyFading());
+    }
+
+    void SetGameForSinglePlayer()
+    {
+        CameraManager cameraManager = CameraManager.instance;
+        bool isNightHuman = (Random.Range(0f, 1f) <= 0.5);
+        print(isNightHuman);
+        
+        cameraManager.CameraForNight.gameObject.SetActive(isNightHuman);
+        cameraManager.CameraForDay.gameObject.SetActive(!isNightHuman);
+
+        carStatus1.gameObject.GetComponent<CarInputHandler>().isAI = !isNightHuman;
+        carStatus2.gameObject.GetComponent<CarInputHandler>().isAI = isNightHuman;
+
     }
 }

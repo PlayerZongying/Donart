@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 
 public class CarStatus : MonoBehaviour
 {
+    public string carName;
+    
     public enum TrackDirection
     {
         CounterClockWise,
@@ -101,7 +103,7 @@ public class CarStatus : MonoBehaviour
             progressInDegree = 0;
             rounds = GameManager.Instance.winningRounds;
             
-            GameManager.Instance.AddResult(gameObject.name, GameManager.Instance.time, carColor);
+            GameManager.Instance.AddResult(carName, GameManager.Instance.time, carColor);
         }
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb6c8bbab3f78e4191a91dba6b47bce, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  hasBump: 1
-  hasSlide: 1
-  hasBoom: 1
-  winningRounds: 1
+  hasBump: 0
+  hasSlide: 0
+  hasBoom: 0
+  winningRounds: 3
   minRound: 1
   maxRound: 10
-  isSinglePlayer: 0
+  isSinglePlayer: 1

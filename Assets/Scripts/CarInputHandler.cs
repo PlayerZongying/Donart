@@ -10,9 +10,10 @@ public class CarInputHandler : MonoBehaviour
     public float InputLerpSpeed = 7;
     Vector2 inputVector = Vector2.zero;
     Vector2 targetInputVector = Vector2.zero;
-
+    
     void Start()
     {
+        
     }
 
     private void Update()
