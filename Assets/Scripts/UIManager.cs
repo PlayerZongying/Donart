@@ -1,7 +1,9 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 public class UIManager : MonoBehaviour
@@ -12,8 +14,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI ReadyText;
     public float fadingTime = 1;
 
-    [Header("Game Status")] public TextMeshProUGUI playerStatus1;
+    [Header("Game Status")] public GameObject playerPanel1;
+    public TextMeshProUGUI playerStatus1;
+    public Slider progress1;
+
+    public GameObject playerPanel2;
     public TextMeshProUGUI playerStatus2;
+    public Slider progress2;
     public TextMeshProUGUI time;
 
     [Header("Pause Panel")] public GameObject panelPause;
@@ -92,22 +99,32 @@ public class UIManager : MonoBehaviour
 
     void UpdateTMPDisplay()
     {
-        playerStatus1.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
-        playerStatus1.text = $"Progress\n" +
-                             $"{_gameManager.carStatus1.progressInDegree: 0.0}\u00B0\n" +
-                             $"\n" +
-                             $"Rounds\n" +
-                             $"{_gameManager.carStatus1.rounds}/{_gameManager.winningRounds}";
+        playerPanel1.SetActive(!_gameManager.isFinished);
+        if (!_gameManager.carStatus1.isCompelete)
+        {
+            playerStatus1.text = $"Rounds\n" + $"{_gameManager.carStatus1.rounds}/{_gameManager.winningRounds}";
+            progress1.value = _gameManager.carStatus1.progressInDegree / 360;
+        }
+        else
+        {
+            playerStatus1.text = "Finish!";
+            progress1.value = 1;
+        }
 
 
-        playerStatus2.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
-        playerStatus2.text = $"Progress\n" +
-                             $"{_gameManager.carStatus2.progressInDegree: 0.0}\u00B0\n" +
-                             $"\n" +
-                             $"Rounds\n" +
-                             $"{_gameManager.carStatus2.rounds}/{_gameManager.winningRounds}";
-
-        time.enabled = (_gameManager.isStarted &&!_gameManager.isFinished);
+        playerPanel2.SetActive(!_gameManager.isFinished);
+        if (!_gameManager.carStatus2.isCompelete)
+        {
+            playerStatus2.text = $"Rounds\n" + $"{_gameManager.carStatus2.rounds}/{_gameManager.winningRounds}";
+            progress2.value = _gameManager.carStatus2.progressInDegree / 360;
+        }
+        else
+        {
+            playerStatus2.text = "Finish";
+            progress2.value = 1;
+        }
+        
+        time.enabled = (!_gameManager.isFinished);
         time.text = $"{_gameManager.time:0.00}";
     }
 
@@ -131,7 +148,7 @@ public class UIManager : MonoBehaviour
         {
             timePassed += Time.deltaTime;
             float t = 1 - timePassed / fadingTime;
-            
+
             Image bgImage = panelReady.GetComponent<Image>();
             Color bgColor = bgImage.color;
             bgColor.a *= t;
@@ -143,6 +160,7 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        panelReady.SetActive(true);
+
+        panelReady.SetActive(false);
     }
 }

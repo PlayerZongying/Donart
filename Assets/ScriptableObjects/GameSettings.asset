@@ -16,3 +16,6 @@ MonoBehaviour:
   hasSlide: 0
   hasBoom: 0
   winningRounds: 1
+  minRound: 1
+  maxRound: 10
+  isSinglePlayer: 1

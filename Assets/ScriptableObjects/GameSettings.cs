@@ -12,6 +12,11 @@ public class GameSettings : ScriptableObject
     public bool hasBoom = false;
 
     public int winningRounds = 3;
+    public int minRound = 1;
+    public int maxRound = 10;
+
+    public bool isSinglePlayer = true;
+    
     // Start is called before the first frame update
     void Start()
     {
