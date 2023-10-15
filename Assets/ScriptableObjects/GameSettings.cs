@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/GameSettings", order = 1)]
@@ -15,19 +11,8 @@ public class GameSettings : ScriptableObject
     public int minRound = 1;
     public int maxRound = 10;
 
-    public bool isSinglePlayer = true;
+    public bool isSinglePlayer = false;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ResetGameSettings()
     {

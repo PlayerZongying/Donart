@@ -1232,6 +1232,7 @@ MonoBehaviour:
   donutNumber: {fileID: 922698813}
   donutMinus: {fileID: 608817534}
   donutPlus: {fileID: 451474491}
+  playerNumberToggleGroup: {fileID: 1658109486}
   singlePlayer: {fileID: 268546897}
   doublePlayer: {fileID: 1876581520}
 --- !u!1 &433731058
@@ -4116,7 +4117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
+  m_AllowSwitchOff: 1
 --- !u!1001 &1671187808
 PrefabInstance:
   m_ObjectHideFlags: 0

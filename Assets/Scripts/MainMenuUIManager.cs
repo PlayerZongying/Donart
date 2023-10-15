@@ -16,6 +16,7 @@ public class MainMenuUIManager : MonoBehaviour
     public Button donutMinus;
     public Button donutPlus;
 
+    public ToggleGroup playerNumberToggleGroup;
     public Toggle singlePlayer;
     public Toggle doublePlayer;
 
@@ -91,9 +92,11 @@ public class MainMenuUIManager : MonoBehaviour
         cherryBoom.isOn = gameSettings.hasBoom;
 
         SetDonutPanel();
-
+        
+        playerNumberToggleGroup.allowSwitchOff = true;
         singlePlayer.isOn = gameSettings.isSinglePlayer;
         doublePlayer.isOn = !gameSettings.isSinglePlayer;
+        playerNumberToggleGroup.allowSwitchOff = false;
     }
 
     public void ChangeDonutNumber(int i)
