@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
         _uiManager = UIManager.Instance;
         gameSettings.SetGame();
         
-        if (gameSettings.isSinglePlayer)
+        if (SceneManager.GetActiveScene().name == "SinglePlayer")
         {
             SetGameForSinglePlayer();
         }
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         CameraManager cameraManager = CameraManager.instance;
         bool isNightHuman = (Random.Range(0f, 1f) <= 0.5);
-        print(isNightHuman);
+        // print(isNightHuman);
         
         cameraManager.CameraForNight.gameObject.SetActive(isNightHuman);
         cameraManager.CameraForDay.gameObject.SetActive(!isNightHuman);
