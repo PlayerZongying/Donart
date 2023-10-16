@@ -32,12 +32,8 @@ public class Direction : MonoBehaviour
         }
         
         targetUp = TorusTrack.Instance.transform.up;
-
-        // transform.right = targetRight;
-        // transform.forward = Vector3.Cross(targetRight, targetUp);
         
         Vector3 targetForward = Vector3.Cross(targetRight, targetUp);
-
         Quaternion rotation = Quaternion.LookRotation(targetForward,targetUp);
 
         return rotation;

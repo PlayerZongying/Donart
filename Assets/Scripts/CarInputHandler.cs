@@ -11,11 +11,6 @@ public class CarInputHandler : MonoBehaviour
     Vector2 inputVector = Vector2.zero;
     Vector2 targetInputVector = Vector2.zero;
     
-    void Start()
-    {
-        
-    }
-
     private void Update()
     {
         UpdateInputVector();
@@ -30,8 +25,7 @@ public class CarInputHandler : MonoBehaviour
 
         inputVector = Vector2.Lerp(inputVector, targetInputVector, Time.deltaTime * InputLerpSpeed);
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         carController.SetInputVector(inputVector);

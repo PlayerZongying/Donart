@@ -1,5 +1,4 @@
 using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -10,11 +9,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [Header("Before Game Start")] public GameObject panelReady;
+    [Header("Before Game Start")] 
+    public GameObject panelReady;
     public TextMeshProUGUI ReadyText;
     public float fadingTime = 1;
 
-    [Header("Game Status")] public GameObject playerPanel1;
+    [Header("Game Status")] 
+    public GameObject playerPanel1;
     public TextMeshProUGUI playerStatus1;
     public Slider progress1;
 
@@ -23,9 +24,11 @@ public class UIManager : MonoBehaviour
     public Slider progress2;
     public TextMeshProUGUI time;
 
-    [Header("Pause Panel")] public GameObject panelPause;
+    [Header("Pause Panel")] 
+    public GameObject panelPause;
 
-    [Header("Result Panel")] public GameObject panelResult;
+    [Header("Result Panel")] 
+    public GameObject panelResult;
     public TextMeshProUGUI winningText;
     public GameObject ResultList;
 

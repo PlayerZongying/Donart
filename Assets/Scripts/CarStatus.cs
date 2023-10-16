@@ -1,31 +1,29 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CarStatus : MonoBehaviour
 {
-    public string carName;
-    
     public enum TrackDirection
     {
         CounterClockWise,
         ClockWise,
     }
 
+    [Header("Data for Display")] 
+    public string carName;
     public TrackDirection trackDirection;
+    public int rounds = 0;
+    public float progressInDegree = 0;
+    public bool isCompelete = false;
+    public Color carColor;
+
+    [Header("Data for Calculation")] 
     private Vector3 initPos;
     private Quaternion initRot;
     private Vector3 initHorizonPos;
     private float currentDegree = 0;
     private float lastDegree = 0;
-    public int rounds = 0;
-    public float progressInDegree = 0;
-    public bool isCompelete = false;
 
-    public Color carColor;
 
     public void Init()
     {
@@ -44,7 +42,7 @@ public class CarStatus : MonoBehaviour
         progressInDegree = 0;
         rounds = 0;
         isCompelete = false;
-        
+
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -54,7 +52,6 @@ public class CarStatus : MonoBehaviour
     void Start()
     {
         Init();
-        // initHorizonPos = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     // Update is called once per frame
@@ -83,18 +80,18 @@ public class CarStatus : MonoBehaviour
         {
             currentDegree += 360;
         }
-        
+
         if (lastDegree - currentDegree > 270)
         {
             rounds++;
         }
-        else if(currentDegree - lastDegree > 270)
+        else if (currentDegree - lastDegree > 270)
         {
             rounds--;
         }
-        
+
         progressInDegree = currentDegree;
-        
+
         lastDegree = currentDegree;
 
         if (rounds == GameManager.Instance.winningRounds)
@@ -102,7 +99,7 @@ public class CarStatus : MonoBehaviour
             isCompelete = true;
             progressInDegree = 0;
             rounds = GameManager.Instance.winningRounds;
-            
+
             GameManager.Instance.AddResult(carName, GameManager.Instance.time, carColor);
         }
     }

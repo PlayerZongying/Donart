@@ -35,16 +35,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float normalizedForwardSpeed;
     [SerializeField] private float frictionFactor = 0;
-    // [SerializeField] private float accelarationFactor = 30f;
 
     private float steeringInput = 0;
-
     private float rotationAngle = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -83,10 +77,8 @@ public class CarController : MonoBehaviour
                 Debug.DrawRay(wheelTransform.position, steeringDir * (wheelMass * desiredAccel), Color.red);
 
                 // acceleration / braking
-
                 Vector3 accelDir = wheelTransform.forward;
                 float carSpeed = Vector3.Dot(transform.forward, carRigidBody.velocity);
-                // normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / maxSpeed);
                 normalizedForwardSpeed = carSpeed / maxSpeed;
                 
                 float evaluatedAccelInput = accelInput * accelrationInputCurve.Evaluate(Mathf.Sign(accelInput) * normalizedForwardSpeed);
@@ -107,15 +99,12 @@ public class CarController : MonoBehaviour
 
         
         ApplySteering();
-
-        // print(carRigidBody.velocity.magnitude);
     }
     void ApplySteering()
     {
         for (int i = 0; i < 2; i++)
         {
             rotationAngle = steeringInput * maxRotationAngle;
-            // Quaternion steeredRotation = Quaternion.Euler(new Vector3(0, rotationAngle, 0));
             wheelTransforms[i].localEulerAngles = new Vector3(0, rotationAngle, 0);
         }
     }

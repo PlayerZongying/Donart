@@ -31,14 +31,6 @@ public class AIInput : MonoBehaviour
 
         float leftRightDeviation =
             Vector3.Dot(TorusTrack.Instance.transform.up, Vector3.Cross(topdownDir, topdownCarDir));
-        if (leftRightDeviation > 0)
-        {
-            // print("right");
-        }
-        else if (leftRightDeviation < 0)
-        {
-            // print("left");
-        }
 
         if (projToCorrectDirction >= 0)
         {

@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -10,7 +8,8 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    
+    [Header("Game Settings and Game States")]
     public GameSettings gameSettings;
     public float time;
 
@@ -18,7 +17,7 @@ public class GameManager : MonoBehaviour
     public bool isFinished = false;
     public int countDownTime = 3;
 
-    
+    [Header("Car Controller and Status")]
     public CarController carController1;
     public CarController carController2;
     public CarStatus carStatus1;

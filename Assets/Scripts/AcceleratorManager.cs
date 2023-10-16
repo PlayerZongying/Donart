@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -48,11 +46,7 @@ public class AcceleratorManager : MonoBehaviour
             StartCoroutine(AcceleratorBehavior(accelerator));
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
     
     IEnumerator AcceleratorBehavior(Accelerator accelerator)
     {
