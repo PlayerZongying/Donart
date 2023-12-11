@@ -1,7 +1,7 @@
 # Donart  
 
 ## Intro
-Using Unity 2022.3.8f1, By Zongying Liu.  
+Using Unity 2022.3.8f1, By Zongying Liu.[Play at Itch.io](https://playerzongying.itch.io/donart)  
 
 Donart (Donut cart) is a racing game, where two players could add different things (toppings) to the donut track and then race.  
 
